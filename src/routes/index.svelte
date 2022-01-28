@@ -1,8 +1,5 @@
 <script lang="ts">
 	import Shader from "$lib/Shader.svelte";
-	import CodeMirror from 'codeMirror'
-
-	CodeMirror()
 </script>
 
 <h1> glslCanvas-svelte </h1>
