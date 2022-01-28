@@ -22,5 +22,5 @@ void main() {
     float pct = plot(st);
     color = (1.0-pct)*color+pct*vec3(st.x,1.0,0.0);
 
-	gl_FragColor = vec4(st.x, 1.0, 1.0,1.0);
+	gl_FragColor = vec4(st.x, st.y, 0.0, 1.0);
 }

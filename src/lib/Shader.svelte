@@ -17,21 +17,33 @@
 
 	async function getFile(filename: string) {
 		const response = await fetch(filename)
-		fileReader.onload = e => data = e.target.result as string
-		fileReader.readAsText(await response.blob())
+		fileReader.onload = e => {
+			data = e.target.result as string
+		}
+		fileReader.readAsText(await response.blob());
+		
 	}
 
-	$: getFile(file)
+	$: file && getFile(file)
 
 	onMount(() => {
 		sandbox = new GlslCanvas(canvas)
+		// getFile(file)
 	})
 
-	$: sandbox?.load(data)
+	$: if (data) {
+		// console.log(data);
+		
+		sandbox?.load(data)
+	}
+
+	$: if (canvas) {
+		canvas.width = width
+		canvas.height = height 
+	}
 </script>
 
-<canvas bind:this={canvas} bind:clientWidth={width} bind:clientHeight={height}
-class="glslCanvas" data-fragment-url={fragment_url} data-fragment={fragment}></canvas>
+<canvas bind:this={canvas} class="glslCanvas" data-fragment-url={fragment_url} data-fragment={fragment}></canvas>
 
 <style>
 	canvas {
