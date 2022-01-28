@@ -20,7 +20,7 @@ void main() {
 
     // Plot a line
     float pct = plot(st);
-    color = (1.0-pct)*color+pct*vec3(0.0,1.0,0.0);
+    color = (1.0-pct)*color+pct*vec3(st.x,1.0,0.0);
 
-	gl_FragColor = vec4(color,1.0);
+	gl_FragColor = vec4(st.x, 1.0, 1.0,1.0);
 }

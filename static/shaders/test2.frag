@@ -7,7 +7,10 @@ uniform vec2 u_mouse;
 uniform float u_time;
 
 void main() {
-	float caca = 0.5;
+	vec2 st = gl_FragCoord.xy/u_resolution;
+	vec2 st_mouse = u_mouse.xy/u_resolution.xy;
+	// float caca = 0.5; 
 
-    gl_FragColor = vec4(caca, caca, caca, 1.0);
+	float v = (st.x + st.y)/2.0;
+    gl_FragColor = vec4(v, v, v, 1.0);
 }
