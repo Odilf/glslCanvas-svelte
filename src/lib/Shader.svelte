@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import GlslCanvas from 'glslCanvas'
+	import { browser } from '$app/env';
 	
 	export let file: string = ""
 	export let width: number = null
@@ -12,28 +12,27 @@
 	let canvas: HTMLCanvasElement
 	let sandbox
 
-	const fileReader = new FileReader()
 	let data: string
 
 	async function getFile(filename: string) {
+		if (!browser) return
+
+		const fileReader = new FileReader()
 		const response = await fetch(filename)
 		fileReader.onload = e => {
 			data = e.target.result as string
 		}
 		fileReader.readAsText(await response.blob());
-		
 	}
 
 	$: file && getFile(file)
 
-	onMount(() => {
-		sandbox = new GlslCanvas(canvas)
-		// getFile(file)
+	onMount(async() => {
+		const GlslCanvas = await import('glslCanvas')
+		sandbox = browser && new GlslCanvas.default(canvas)
 	})
 
 	$: if (data) {
-		// console.log(data);
-		
 		sandbox?.load(data)
 	}
 
@@ -43,7 +42,7 @@
 	}
 </script>
 
-<canvas bind:this={canvas} class="glslCanvas" data-fragment-url={fragment_url} data-fragment={fragment}></canvas>
+<canvas bind:this={canvas} name="glslCanvas" data-fragment-url={fragment_url} data-fragment={fragment}></canvas>
 
 <style>
 	canvas {

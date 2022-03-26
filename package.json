@@ -1,5 +1,5 @@
 {
-  "name": "gsls-canvas-svelte",
+  "name": "glsl-canvas-svelte",
   "version": "1.0.0",
   "description": "A simple Svelte wrapper for glslCanvas",
   "author": {

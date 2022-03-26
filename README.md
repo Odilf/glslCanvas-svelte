@@ -14,7 +14,7 @@ Example:
 
 ```svelte
 <script lang="ts">
-  import Shader from 'gsls-cavnas-svelte'
+  import { Shader } from 'gsls-cavnas-svelte'
 </script>
 
 <Shader file="shaders/example.frag" width={750} height={750}/>
