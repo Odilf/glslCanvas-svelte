@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Select from "$lib/Select.svelte";
-import Shader from "$lib/Shader.svelte";
+	import Select from "$lib/UI/Select.svelte";
+	import Shader from "$lib/Shader.svelte";
 
 	let shader: string = 'circle'
 </script>
